@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Motor de la Historia: Dialéctica Idealista vs Materialista</title>
+    <style>
+        /* CSS Reset y Variables de Tema Filosófico Neutro */
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --border-color: #475569;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-gold: #cbd5e1;
+            
+            /* Colores Neutros e Imparciales para ambas perspectivas */
+            --idealism-color: #60a5fa;
+            --idealism-border: #3b82f6;
+            --idealism-bg: rgba(59, 130, 246, 0.08);
+            
+            --materialism-color: #f97316;
+            --materialism-border: #ea580c;
+            --materialism-bg: rgba(234, 88, 12, 0.08);
+            
+            --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.5rem 1rem;
+        }
+
+        /* Encabezado */
+        header {
+            max-width: 1000px;
+            margin: 0 auto 1.5rem auto;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .header-title h1 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .header-title p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .stat-box {
+            background: rgba(0,0,0,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .stat-box .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-box .value {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        /* Contenedor Principal */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Banner de Propósito */
+        .academic-banner {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        /* Escenario Tarjeta */
+        .scenario-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .scenario-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .scenario-tag {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            border: 1px solid var(--border-color);
+        }
+
+        .scenario-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .scenario-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Instrucción */
+        .instruction-banner {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin: 0.25rem 0;
+        }
+
+        /* Tarjetas de Selección Neutrales */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .option-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .option-card.idealist-card {
+            border-top: 4px solid var(--idealism-border);
+        }
+
+        .option-card.materialist-card {
+            border-top: 4px solid var(--materialism-border);
+        }
+
+        .card-type {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .idealist-card .card-type {
+            color: var(--idealism-color);
+        }
+
+        .materialist-card .card-type {
+            color: var(--materialism-color);
+        }
+
+        .card-philosopher {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            flex-grow: 1;
+            margin-bottom: 1.25rem;
+        }
+
+        .btn-select {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .idealist-card:hover .btn-select {
+            background: var(--idealism-border);
+            color: #ffffff;
+            border-color: var(--idealism-border);
+        }
+
+        .materialist-card:hover .btn-select {
+            background: var(--materialism-border);
+            color: #ffffff;
+            border-color: var(--materialism-border);
+        }
+
+        /* Botón opcional de comparación directa */
+        .compare-both-container {
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .btn-compare-both {
+            background: transparent;
+            border: 1px dashed var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-compare-both:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Panel de Análisis Comparativo */
+        .analysis-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.25rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .analysis-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .perspective-box {
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .perspective-box.idealism-box {
+            background: var(--idealism-bg);
+            border-left: 4px solid var(--idealism-border);
+        }
+
+        .perspective-box.materialism-box {
+            background: var(--materialism-bg);
+            border-left: 4px solid var(--materialism-border);
+        }
+
+        .box-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .idealism-box .box-title { color: var(--idealism-color); }
+        .materialism-box .box-title { color: var(--materialism-color); }
+
+        .box-text {
+            font-size: 0.92rem;
+            color: var(--text-primary);
+        }
+
+        /* Cuadro de Dialéctica / Contradicción */
+        .dialectic-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+        }
+
+        .dialectic-title {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .dialectic-text {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .btn-next {
+            background: var(--border-color);
+            color: var(--text-primary);
+            font-weight: 600;
+            border: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 6px;
+            cursor: pointer;
+            align-self: flex-end;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .btn-next:hover {
+            background: #64748b;
+        }
+
+        /* Pantalla Final Integradora */
+        .summary-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .summary-header {
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .summary-header h2 {
+            color: var(--text-primary);
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .summary-header p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Tabla / Cuadro Comparativo */
+        .comparison-table-container {
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            background: rgba(0,0,0,0.3);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .comparison-table th.col-idealism { color: var(--idealism-color); }
+        .comparison-table th.col-materialism { color: var(--materialism-color); }
+
+        .comparison-table td {
+            background: rgba(255,255,255,0.01);
+            color: var(--text-secondary);
+        }
+
+        .comparison-table td strong {
+            color: var(--text-primary);
+        }
+
+        /* Preguntas Abiertas */
+        .reflection-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .reflection-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.1rem;
+        }
+
+        .reflection-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .reflection-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .btn-restart {
+            background: var(--border-color);
+            color: var(--text-primary);
+            font-weight: 600;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            align-self: center;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .btn-restart:hover {
+            background: #64748b;
+        }
+
+        /* Barra de Progreso */
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.4rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--text-primary);
+            width: 20%;
+            transition: width 0.3s ease;
+        }
+
+        footer {
+            max-width: 1000px;
+            margin: 1.5rem auto 0 auto;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="header-title">
+            <h1>🏛️ El Motor de la Historia</h1>
+            <p>Análisis Filosófico Comparativo de la Dialéctica Histórica</p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-box">
+                <span class="label">Avance del Recorrido</span>
+                <span id="scenario-counter" class="value">1 / 5</span>
+            </div>
+            <div class="stat-box">
+                <span class="label">Exploración</span>
+                <span id="exploration-status" class="value">0 / 5 Explorados</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="academic-banner">
+            Herramienta analítica para contrastar la Dialéctica Idealista (Hegel) y la Dialéctica Materialista (Marx). Ambas corrientes conciben la historia como un proceso de transformación mediante contradicciones, pero parten de premisas filosóficas distintas.
+        </div>
+
+        <!-- Tarjeta del Escenario Histórico -->
+        <section id="scenario-section" class="scenario-card">
+            <div class="scenario-header">
+                <span id="scenario-tag" class="scenario-tag">Escenario 1</span>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar-fill"></div>
+                </div>
+            </div>
+            <h2 id="scenario-title" class="scenario-title">Cargando escenario...</h2>
+            <p id="scenario-description" class="scenario-description">Cargando descripción...</p>
+        </section>
+
+        <div id="instruction-banner" class="instruction-banner">
+            Selecciona una perspectiva para examinar la interpretación de las causas del cambio histórico:
+        </div>
+
+        <!-- Tarjetas Neutrales de Selección -->
+        <section id="cards-container" class="cards-grid">
+            <!-- Opción Idealista -->
+            <div class="option-card idealist-card" onclick="selectPerspective('idealist')">
+                <div>
+                    <div class="card-type">📘 Dialéctica Idealista</div>
+                    <div class="card-philosopher">Perspectiva hegeliana (G. W. F. Hegel)</div>
+                    <div id="idealist-text" class="card-text">Cargando perspectiva...</div>
+                </div>
+                <button class="btn-select">Explorar Perspectiva Idealista</button>
+            </div>
+
+            <!-- Opción Materialista -->
+            <div class="option-card materialist-card" onclick="selectPerspective('materialist')">
+                <div>
+                    <div class="card-type">📙 Dialéctica Materialista</div>
+                    <div class="card-philosopher">Perspectiva marxista (K. Marx / F. Engels)</div>
+                    <div id="materialist-text" class="card-text">Cargando perspectiva...</div>
+                </div>
+                <button class="btn-select">Explorar Perspectiva Materialista</button>
+            </div>
+        </section>
+
+        <div id="compare-both-container" class="compare-both-container">
+            <button class="btn-compare-both" onclick="selectPerspective('both')">👁️ Comparar ambas perspectivas simultáneamente</button>
+        </div>
+
+        <!-- Panel de Análisis Comparativo -->
+        <section id="analysis-panel" class="analysis-panel">
+            <div id="analysis-header" class="analysis-header">
+                Análisis Filosófico Comparativo
+            </div>
+
+            <!-- Caja Idealista -->
+            <div id="idealism-analysis-box" class="perspective-box idealism-box">
+                <div class="box-title">📘 Perspectiva Idealista (Hegel)</div>
+                <div id="idealism-analysis-text" class="box-text"></div>
+            </div>
+
+            <!-- Caja Materialista -->
+            <div id="materialism-analysis-box" class="perspective-box materialism-box">
+                <div class="box-title">📙 Perspectiva Materialista (Marx)</div>
+                <div id="materialism-analysis-text" class="box-text"></div>
+            </div>
+
+            <!-- Explicación Dialéctica del Cambio -->
+            <div class="dialectic-box">
+                <div class="dialectic-title">⚡ Contradicción Dialéctica en este Escenario</div>
+                <div id="dialectic-explanation-text" class="dialectic-text"></div>
+            </div>
+
+            <button id="btn-next" class="btn-next" onclick="nextScenario()">Continuar al Siguiente Escenario ➔</button>
+        </section>
+
+        <!-- Pantalla Final Integradora -->
+        <section id="summary-panel" class="summary-panel">
+            <div class="summary-header">
+                <h2>📊 Cuadro Comparativo Integrador</h2>
+                <p>Resumen de las premisas ontológicas y metodológicas de ambas corrientes dialécticas</p>
+            </div>
+
+            <!-- Tabla Comparativa -->
+            <div class="comparison-table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Eje de Análisis</th>
+                            <th class="col-idealism">Dialéctica Idealista (Hegel)</th>
+                            <th class="col-materialism">Dialéctica Materialista (Marx)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Premisa Ontológica Primaria</strong></td>
+                            <td>La <strong>Idea</strong> o el <em>Espíritu Absoluto (Geist)</em> es la realidad fundamental. La materia es manifestación del pensamiento.</td>
+                            <td>La <strong>Materia</strong> y la existencia social son primarias. Las ideas y la conciencia son productos de las condiciones materiales.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motor del Cambio Histórico</strong></td>
+                            <td>La resolución de contradicciones conceptuales y el desarrollo de la conciencia de libertad en las ideas.</td>
+                            <td>La lucha de clases y las contradicciones entre las <em>fuerzas productivas</em> y las <em>relaciones de producción</em>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relación Conciencia - Existencia</strong></td>
+                            <td><em>"Las ideas de los seres humanos determinan su forma de vida y sus instituciones."</em></td>
+                            <td><em>"No es la conciencia del hombre la que determina su ser, sino su ser social el que determina su conciencia."</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Estructura Social</strong></td>
+                            <td>El Estado y la Filosofía son la máxima expresión del desarrollo ético de una sociedad.</td>
+                            <td>La <strong>Infraestructura económica</strong> sostiene a la <strong>Superestructura</strong> jurídica, política e ideológica.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Preguntas para Debate en Aula -->
+            <div class="reflection-container">
+                <h3 style="color: var(--text-primary); font-size: 1.1rem; margin-top: 0.5rem;">💬 Preguntas de Reflexión para el Debate</h3>
+                
+                <div class="reflection-card">
+                    <h4>1. Causalidad en las Transformaciones Sociales</h4>
+                    <p>Al analizar un cambio social contemporáneo (como las redes sociales o la inteligencia artificial), ¿consideras que el impulso principal proviene de nuevas ideas filosóficas/éticas o de cambios en la infraestructura tecnológica y económica?</p>
+                </div>
+
+                <div class="reflection-card">
+                    <h4>2. El Rol del Estado y las Instituciones</h4>
+                    <p>¿Es el Estado un árbitro racional diseñado para garantizar la libertad ética de los ciudadanos (Hegel), o una estructura condicionada por las relaciones de propiedad y poder económico vigentes (Marx)?</p>
+                </div>
+
+                <div class="reflection-card">
+                    <h4>3. El Método Dialéctico</h4>
+                    <p>Ambas filosofías sostienen que el progreso o cambio ocurre a través de tensiones y contradicciones en lugar de un desarrollo lineal. ¿Qué ventajas analíticas ofrece el enfoque dialéctico frente a otras explicaciones históricas?</p>
+                </div>
+            </div>
+
+            <button class="btn-restart" onclick="restartExploration()">🔄 Reiniciar Exploración Comparativa</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        El Motor de la Historia — Recurso Didáctico sobre Filosofía de la Historia
+    </footer>
+
+    <!-- Lógica JavaScript Integrada -->
+    <script>
+        // Datos de los 5 Escenarios Históricos con Enfoque Imparcial
+        const scenarios = [
+            {
+                id: 1,
+                tag: "Escenario 1 de 5",
+                title: "1. La Caída de un Gran Imperio Antiguo",
+                description: "Un poderoso imperio basado en el trabajo esclavo y la expansión territorial entra en una fase de desintegración institucional y política.",
+                idealistBrief: "Énfasis en la transformación de los valores morales, la pérdida de cohesión cívica y la evolución en la concepción del derecho e identidad política.",
+                materialistBrief: "Énfasis en los límites productivos del modelo esclavista, el costo de mantenimiento de fronteras y las contradicciones económicas del imperio.",
+                idealistDetailed: "Desde la óptica idealista de Hegel, la caída del imperio se analiza como un momento en el que el 'Espíritu' de esa civilización agotó sus principios éticos. Al transformarse las ideas de libertad, ciudadanía y religión, las antiguas leyes e instituciones pierden su legitimidad interna, provocando la reorganización política de la sociedad.",
+                materialistDetailed: "Desde la óptica materialista de Marx, la caída se explica porque el modo de producción esclavista alcanzó una contradicción insalvable: la imposibilidad de aumentar la productividad sin extender continuamente las fronteras. El agotamiento económico de la base productiva terminó desmantelando la superestructura política del imperio.",
+                dialecticExplanation: "Ambas corrientes identifican una contradicción dialéctica: el Idealismo ve un choque entre los valores tradicionales y los nuevos conceptos de derecho/libertad; el Materialismo ve un choque entre el desarrollo de la fuerza de trabajo y las relaciones esclavistas de propiedad."
+            },
+            {
+                id: 2,
+                tag: "Escenario 2 de 5",
+                title: "2. El Inicio de la Revolución Industrial",
+                description: "A finales del siglo XVIII, la producción artesanal en talleres es sustituida aceleradamente por el trabajo en fábricas con maquinaria.",
+                idealistBrief: "Énfasis en el desarrollo del pensamiento científico, el racionalismo ilustrado y las innovaciones teóricas que transformaron la visión técnica.",
+                materialistBrief: "Énfasis en la acumulación de capitales, el cercamiento de tierras comunales que creó mano de obra disponible y la búsqueda de rentabilidad.",
+                idealistDetailed: "Para el idealismo hegeliano, la Revolución Industrial es una manifestación del progreso de la Razón humana y el dominio del pensamiento abstracto sobre las fuerzas naturales. La capacidad de inventar y sistematizar conocimientos teóricos impulsa el diseño de nuevas formas de organización.",
+                materialistDetailed: "Para el materialismo histórico, la industrialización surge del cambio en las condiciones materiales: la separación de los campesinos de sus tierras (creando la clase asalariada) y la necesidad del capitalista de abaratar costos mediante la mecanización de la infraestructura productiva.",
+                dialecticExplanation: "La tensión dialéctica idealista ocurre entre las viejas costumbres artesanales y el nuevo pensamiento racionalizador. La tensión materialista ocurre entre la propiedad privada del capital y el carácter crecientemente socializado del trabajo en las fábricas."
+            },
+            {
+                id: 3,
+                tag: "Escenario 3 de 5",
+                title: "3. Una Crisis Económica Global",
+                description: "Se produce una interrupción repentina del comercio y la producción, generando desocupación paralela a la existencia de bienes no vendidos.",
+                idealistBrief: "Énfasis en las fluctuaciones del crédito, las expectativas colectivas, la confianza en los mercados y las decisiones políticas de gestión.",
+                materialistBrief: "Énfasis en la contradicción de sobreproducción, la diferencia entre salarios y valor producido, y la dinámica del ciclo del capital.",
+                idealistDetailed: "La perspectiva idealista analiza las crisis como desajustes en la esfera de las expectativas, el crédito y la confianza racional de los agentes económicos. Son interpretadas como tensiones en la regulación estatal y legal que exigen reformas conceptuales e institucionales.",
+                materialistDetailed: "La perspectiva materialista sostiene que la crisis es resultado directo de la dinámica interna del capitalismo: el afán por maximizar beneficios conduce a incrementar la producción mientras se contienen salarios, generando un descalce entre la capacidad productiva y el poder adquisitivo de la población.",
+                dialecticExplanation: "El idealismo enfoca la contradicción entre la libertad del mercado y las regulaciones éticas de la comunidad. El materialismo enfoca la contradicción entre la producción de bienes como valores de uso y su realización en el mercado como valores de cambio."
+            },
+            {
+                id: 4,
+                tag: "Escenario 4 de 5",
+                title: "4. El Surgimiento de las Ideas de Libertad e Igualdad",
+                description: "Durante los siglos XVII y XVIII se difunden filosofías políticas que proclaman los derechos individuales y la división de poderes frente al absolutismo.",
+                idealistBrief: "Énfasis en el despliegue de la conciencia filosófica, la maduración del concepto de libertad y el debate ético-político.",
+                materialistBrief: "Énfasis en el crecimiento del comercio urbano, las demandas jurídicas de la burguesía naciente y la necesidad de libres mercados.",
+                idealistDetailed: "Para el idealismo de Hegel, la formulación de los derechos universales representa una etapa fundamental en el autoconocimiento de la Razón. Las ideas éticas se desarrollan dialécticamente cuestionando el orden absolutista y articulando una nueva visión del Estado de Derecho.",
+                materialistDetailed: "Para el materialismo histórico, las ideas de igualdad y libertad formal reflejan las necesidades de la naciente clase burguesa, que requería libertad de contratación y circulación de mercancías sin las trabas y privilegios del sistema feudal.",
+                dialecticExplanation: "La contradicción en el idealismo se da entre el concepto abstracto de libertad y las instituciones absolutistas. En el materialismo, la contradicción se da entre el desarrollo de las relaciones mercantiles y el marco jurídico-feudal que restringía su expansión."
+            },
+            {
+                id: 5,
+                tag: "Escenario 5 de 5",
+                title: "5. Una Rebelión Campesina",
+                description: "Comunidades rurales se organizan e inician insurrecciones contra los tributos exigidos por los terratenientes y las autoridades locales.",
+                idealistBrief: "Énfasis en el impacto de discursos religiosos o morales, la defensa de la justicia comunitaria y los ideales de dignidad.",
+                materialistBrief: "Énfasis en el aumento de la presión impositiva, la escasez de tierras de cultivo y las condiciones materiales de subsistencia.",
+                idealistDetailed: "Desde el marco idealista, la rebelión campesina se comprende como la respuesta ante la vulneración de normas éticas y concepciones tradicionales de justicia compartida. La adopción de discursos o doctrinas (religiosas o morales) proporciona el marco normativo para la acción.",
+                materialistDetailed: "Desde el marco materialista, las causas primarias residen en la extracción de rentas feudales y la presión sobre el mínimo de subsistencia. Las ideas morales o religiosas constituyen el lenguaje (superestructura) en el que se expresa el conflicto material subyacente.",
+                dialecticExplanation: "La dialéctica idealista aborda la contraposición entre las costumbres morales tradicionales y las arbitrariedades del poder político. La dialéctica materialista aborda la contraposición de intereses económicos entre la clase que trabaja la tierra y la clase que extrae el tributo."
+            }
+        ];
+
+        // Estado del Recorrido
+        let currentScenarioIndex = 0;
+        let scenariosExploredCount = 0;
+        const scenariosExploredMap = new Array(scenarios.length).fill(false);
+
+        // Elementos del DOM
+        const scenarioCounter = document.getElementById('scenario-counter');
+        const explorationStatus = document.getElementById('exploration-status');
+        const progressBar = document.getElementById('progress-bar');
+        const scenarioTag = document.getElementById('scenario-tag');
+        const scenarioTitle = document.getElementById('scenario-title');
+        const scenarioDescription = document.getElementById('scenario-description');
+        const idealistText = document.getElementById('idealist-text');
+        const materialistText = document.getElementById('materialist-text');
+        
+        const cardsContainer = document.getElementById('cards-container');
+        const compareBothContainer = document.getElementById('compare-both-container');
+        const instructionBanner = document.getElementById('instruction-banner');
+        
+        const analysisPanel = document.getElementById('analysis-panel');
+        const analysisHeader = document.getElementById('analysis-header');
+        const idealismAnalysisBox = document.getElementById('idealism-analysis-box');
+        const materialismAnalysisBox = document.getElementById('materialism-analysis-box');
+        const idealismAnalysisText = document.getElementById('idealism-analysis-text');
+        const materialismAnalysisText = document.getElementById('materialism-analysis-text');
+        const dialecticExplanationText = document.getElementById('dialectic-explanation-text');
+        
+        const scenarioSection = document.getElementById('scenario-section');
+        const summaryPanel = document.getElementById('summary-panel');
+
+        // Cargar Escenario
+        function loadScenario(index) {
+            const scenario = scenarios[index];
+
+            // Actualizar Estadísticas y Progreso de Navegación
+            scenarioCounter.innerText = `${index + 1} / ${scenarios.length}`;
+            progressBar.style.width = `${((index + 1) / scenarios.length) * 100}%`;
+
+            // Textos del Escenario
+            scenarioTag.innerText = scenario.tag;
+            scenarioTitle.innerText = scenario.title;
+            scenarioDescription.innerText = scenario.description;
+            idealistText.innerText = scenario.idealistBrief;
+            materialistText.innerText = scenario.materialistBrief;
+
+            // Restablecer Vistas
+            cardsContainer.style.display = 'grid';
+            compareBothContainer.style.display = 'block';
+            instructionBanner.style.display = 'block';
+            analysisPanel.style.display = 'none';
+        }
+
+        // Selección e Inspección de Perspectivas
+        function selectPerspective(perspective) {
+            const scenario = scenarios[currentScenarioIndex];
+
+            // Registrar avance en exploración
+            if (!scenariosExploredMap[currentScenarioIndex]) {
+                scenariosExploredMap[currentScenarioIndex] = true;
+                scenariosExploredCount++;
+                explorationStatus.innerText = `${scenariosExploredCount} / ${scenarios.length} Explorados`;
+            }
+
+            // Ocultar tarjetas de selección
+            cardsContainer.style.display = 'none';
+            compareBothContainer.style.display = 'none';
+            instructionBanner.style.display = 'none';
+
+            // Configurar visibilidad del panel según elección
+            if (perspective === 'idealist') {
+                analysisHeader.innerText = "Análisis: Perspectiva Idealista (Hegel)";
+                idealismAnalysisBox.style.display = 'block';
+                materialismAnalysisBox.style.display = 'none';
+                idealismAnalysisText.innerText = scenario.idealistDetailed;
+            } else if (perspective === 'materialist') {
+                analysisHeader.innerText = "Análisis: Perspectiva Materialista (Marx)";
+                idealismAnalysisBox.style.display = 'none';
+                materialismAnalysisBox.style.display = 'block';
+                materialismAnalysisText.innerText = scenario.materialistDetailed;
+            } else if (perspective === 'both') {
+                analysisHeader.innerText = "Análisis Comparativo Simultáneo";
+                idealismAnalysisBox.style.display = 'block';
+                materialismAnalysisBox.style.display = 'block';
+                idealismAnalysisText.innerText = scenario.idealistDetailed;
+                materialismAnalysisText.innerText = scenario.materialistDetailed;
+            }
+
+            dialecticExplanationText.innerText = scenario.dialecticExplanation;
+
+            // Mostrar Panel
+            analysisPanel.style.display = 'flex';
+        }
+
+        // Avanzar de Escenario
+        function nextScenario() {
+            currentScenarioIndex++;
+            if (currentScenarioIndex < scenarios.length) {
+                loadScenario(currentScenarioIndex);
+            } else {
+                showSummary();
+            }
+        }
+
+        // Pantalla Final Integradora
+        function showSummary() {
+            scenarioSection.style.display = 'none';
+            cardsContainer.style.display = 'none';
+            compareBothContainer.style.display = 'none';
+            instructionBanner.style.display = 'none';
+            analysisPanel.style.display = 'none';
+
+            summaryPanel.style.display = 'flex';
+        }
+
+        // Reiniciar Exploración
+        function restartExploration() {
+            currentScenarioIndex = 0;
+            scenariosExploredCount = 0;
+            scenariosExploredMap.fill(false);
+            
+            explorationStatus.innerText = "0 / 5 Explorados";
+            
+            scenarioSection.style.display = 'block';
+            summaryPanel.style.display = 'none';
+
+            loadScenario(0);
+        }
+
+        // Inicializar al cargar ventana
+        window.onload = function() {
+            loadScenario(0);
+        };
+    </script>
+</body>
+</html>
